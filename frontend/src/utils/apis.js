@@ -35,3 +35,68 @@ export const registerUser = async ({ username, email, password }) => {
   }
   return { error: true };
 };
+
+const token = localStorage.getItem("token");
+
+const getHeaders = () => ({
+  "Content-Type": "application/json",
+  Authorization: token,
+});
+
+// --- Milestones ---
+
+export const getMilestones = async () => {
+  const res = await fetch(`${API_URL}/api/milestones`, {
+    method: "GET",
+    headers: getHeaders(),
+  });
+  return res.json();
+};
+
+export const addMilestone = async (title, date, note) => {
+  console.log(title, date, note);
+  const res = await fetch(`${API_URL}/api/milestones`, {
+    method: "POST",
+    headers: getHeaders(),
+    body: JSON.stringify({ title, date, note }),
+  });
+  const data = await res.json();
+  console.log(data);
+  return data;
+};
+
+export const updateMilestone = async (id, data) => {
+  const res = await fetch(`${API_URL}/api/milestones/${id}`, {
+    method: "PUT",
+    headers: getHeaders(),
+    body: JSON.stringify(data),
+  });
+  return res.json();
+};
+
+export const deleteMilestone = async (id) => {
+  const res = await fetch(`${API_URL}/api/milestones/${id}`, {
+    method: "DELETE",
+    headers: getHeaders(),
+  });
+  return res.json();
+};
+
+// --- Tips ---
+
+export const getTips = async (milestoneId) => {
+  const res = await fetch(`${API_URL}/api/milestones/${milestoneId}/tips`, {
+    method: "GET",
+    headers: getHeaders(),
+  });
+  return res.json();
+};
+
+export const addTip = async (milestoneId, text) => {
+  const res = await fetch(`${API_URL}/api/milestones/${milestoneId}/tips`, {
+    method: "POST",
+    headers: getHeaders(),
+    body: JSON.stringify({ text }),
+  });
+  return res.json();
+};
