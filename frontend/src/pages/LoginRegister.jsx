@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { loginUser, registerUser, verifyToken } from "../../utils/apis.js";
+import { loginUser, registerUser, verifyToken } from "../utils/apis.js";
 import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {

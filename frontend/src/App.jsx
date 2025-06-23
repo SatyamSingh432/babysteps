@@ -1,8 +1,8 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Welcome from "./components/pages/Welcome.jsx";
-import AuthPage from "./components/pages/LoginRegister.jsx";
+import Welcome from "./pages/Welcome.jsx";
+import AuthPage from "./pages/LoginRegister.jsx";
 function App() {
   return (
     <BrowserRouter>
