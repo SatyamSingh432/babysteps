@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoute from "./routes/authRoutes.js";
 import milestoneRoutes from "./routes/milestoneRoutes.js";
+import tipRoutes from "./routes/tipRoutes.js";
 
 const app = express();
 dotenv.config();
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api", authRoute);
+app.use("/api/tips", tipRoutes);
 app.use("/api/milestones", milestoneRoutes);
 
 mongoose.connect(process.env.MONGO_URI).then(() => {
