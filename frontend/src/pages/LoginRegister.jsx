@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { loginUser, registerUser, verifyToken } from "../utils/apis.js";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/AuthContex";
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -15,6 +16,8 @@ const AuthPage = () => {
     password: "",
     confirmPassword: "",
   });
+
+  const { login } = useUser();
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -57,6 +60,7 @@ const AuthPage = () => {
       const res = await loginUser(loginForm);
       if (res) {
         navigate("/welcome");
+        login(res.user);
       }
       setLoginForm({
         email: "",
@@ -74,6 +78,7 @@ const AuthPage = () => {
       const res = await registerUser(registerForm);
       if (res) {
         navigate("/welcome");
+        login(res.user);
       }
       setRegisterForm({
         username: "",

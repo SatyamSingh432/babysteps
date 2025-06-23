@@ -1,7 +1,6 @@
 const API_URL = "http://localhost:8080";
 
 export const loginUser = async ({ email, password }) => {
-  console.log(email, password);
   const res = await fetch(`${API_URL}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -9,7 +8,7 @@ export const loginUser = async ({ email, password }) => {
   });
   const resJson = await res.json();
   localStorage.setItem("token", resJson.token);
-  // console.log(resJson.token);
+  localStorage.setItem("user", resJson.user);
   return resJson;
 };
 
@@ -30,6 +29,8 @@ export const registerUser = async ({ username, email, password }) => {
   if (res.ok) {
     const resJson = await res.json();
     localStorage.setItem("token", resJson.token);
+    localStorage.setItem("user", resJson.user);
+
     return resJson;
   }
   return { error: true };
