@@ -19,7 +19,7 @@ export default function Navbar() {
         <span className="text-sm">{user}</span>
         <button
           onClick={handleLogout}
-          className="bg-white text-blue-600 px-3 py-1 rounded"
+          className="bg-white text-blue-600 px-3 py-1 rounded cursor-pointer"
         >
           Logout
         </button>
