@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import { addTip } from "../utils/apis";
 
-export default function TipForm({ name }) {
-  const [title, setTitle] = useState("");
-
-  const handleSubmit = (e) => {
+export default function TipForm({
+  name,
+  tip,
+  setTip,
+  milestoneId,
+  setVisibleTipsIndex,
+}) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(title);
-    setTitle("");
+    if (!tip.trim()) return;
+    await addTip(milestoneId, tip);
+    setTip("");
+    setVisibleTipsIndex(null);
   };
 
   return (
@@ -14,8 +20,8 @@ export default function TipForm({ name }) {
       <input
         className="w-full p-2 border rounded"
         placeholder="type your tip"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        value={tip}
+        onChange={(e) => setTip(e.target.value)}
         required
       />
 

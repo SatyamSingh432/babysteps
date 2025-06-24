@@ -1,39 +1,51 @@
-import React, { useState } from "react";
+import { addMilestone } from "../utils/apis";
 
-export default function MilestoneForm({ name }) {
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
-  const [note, setNote] = useState("");
+export default function MilestoneForm({
+  name,
+  form,
+  setForm,
+  setEditFormData = () => {},
+  editFormData = {},
+}) {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(title, date, note);
-    setTitle("");
-    setDate("");
-    setNote("");
+    const { title, date, note } = form;
+    await addMilestone(title, date, note);
+    setForm({ title: "", date: "", note: "" });
   };
 
   return (
     <form onSubmit={handleSubmit} className="mb-4 space-y-2 pt-4">
       <input
         className="w-full p-2 border rounded"
+        name="title"
         placeholder="Milestone title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        value={editFormData?.title || form.title}
+        onChange={handleChange}
         required
       />
       <input
         type="date"
         className="w-full p-2 border rounded"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
+        name="date"
+        value={form?.date || ""}
+        onChange={handleChange}
         required
       />
       <textarea
         className="w-full p-2 border rounded"
+        name="note"
         placeholder="Optional note"
-        value={note}
-        onChange={(e) => setNote(e.target.value)}
+        value={editFormData?.note || form.note}
+        onChange={handleChange}
       />
       <button
         className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
