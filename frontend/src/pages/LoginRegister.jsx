@@ -24,7 +24,7 @@ const AuthPage = () => {
       const token = localStorage.getItem("token");
       console.log(token);
       if (token) {
-        const res = await verifyToken(token);
+        const res = await verifyToken(JSON.parse(token));
         if (res) {
           navigate("/welcome");
         }

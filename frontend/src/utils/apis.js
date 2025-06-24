@@ -37,12 +37,14 @@ export const registerUser = async ({ username, email, password }) => {
   return { error: true };
 };
 
-const token = localStorage.getItem("token");
+const getHeaders = () => {
+  const token = JSON.parse(localStorage.getItem("token"));
 
-const getHeaders = () => ({
-  "Content-Type": "application/json",
-  Authorization: token,
-});
+  return {
+    "Content-Type": "application/json",
+    Authorization: token,
+  };
+};
 
 // --- Milestones ---
 
