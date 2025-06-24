@@ -24,7 +24,7 @@ const Welcome = () => {
         </button>
       </div>
 
-      <div className="p-4 max-w-2xl mx-auto">
+      <div className="p-4 max-w-2xl mx-auto h-[500px] overflow-scroll">
         <MilestoneList form={form} setIsModal1={setIsModal} />
       </div>
 
