@@ -59,8 +59,8 @@ const AuthPage = () => {
     try {
       const res = await loginUser(loginForm);
       if (res) {
-        navigate("/welcome");
         login(res.user);
+        navigate("/welcome");
       }
       setLoginForm({
         email: "",
@@ -77,8 +77,8 @@ const AuthPage = () => {
     try {
       const res = await registerUser(registerForm);
       if (res) {
-        navigate("/welcome");
         login(res.user);
+        navigate("/welcome");
       }
       setRegisterForm({
         username: "",

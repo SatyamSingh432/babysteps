@@ -42,7 +42,7 @@ export default function MilestoneList({ form }) {
 
   return (
     <div className="space-y-4 ">
-      {milestones.map((m, index) => (
+      {milestones?.map((m, index) => (
         <div key={index} className="border p-4 rounded bg-white">
           <div className="flex justify-between">
             <div>
