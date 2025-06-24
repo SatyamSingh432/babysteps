@@ -1,12 +1,74 @@
-# React + Vite
+# 👶 BabySteps
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**BabySteps** is a simple web app that helps you track important milestones and add helpful tips for each. Perfect for parenting logs, personal development tracking, or learning journeys.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- 🧱 Add, edit, and delete milestones
+- 💡 View and add helpful tips for each milestone
+- 📦 Frontend built with **React + TailwindCSS**
+- 🔐 Backend (optional) built with **Express + MongoDB**
+- 🚀 Deployed on **Netlify**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🖥️ Tech Stack
+
+| Frontend     | Backend            |
+| ------------ | ------------------ |
+| React        | Express.js         |
+| Tailwind CSS | MongoDB + Mongoose |
+| REST API     |
+
+---
+
+## 🔧 Project Structure
+
+├── backend/ # Express + MongoDB backend
+│ ├── src/
+│ │ ├── controllers/
+│ │ ├── middleware/
+│ │ ├── models/
+│ │ ├── routes/
+│ │ └── index.js
+│ └── .env # Env variables (e.g., MONGO_URI)
+│ └── package.json
+│
+├── frontend/ # React frontend
+│ ├── public/
+│ └── src/
+│ ├── assets/
+│ ├── components/
+│ ├── context/
+│ ├── pages/
+│ └── utils/
+| |\_\_App.jsx
+│ └── package.json
+
+## 🔧 Setup Instructions
+
+### 📦 1. Clone the Repository
+
+```bash
+git clone https://github.com/SatyamSingh432/babysteps.git
+cd babysteps
+```
+
+for frontend
+
+cd frontend
+npm install
+npm run dev
+
+for backend
+
+cd backend
+npm install
+npm run dev
+
+Screenshots
+
+🙋‍♂️ Author
+Made with by Satyam Singh
