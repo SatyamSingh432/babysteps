@@ -6,6 +6,11 @@ import Modal from "../components/Modal";
 
 const Welcome = () => {
   const [isModal, setIsModal] = useState(false);
+  const [form, setForm] = useState({
+    title: "",
+    date: "",
+    note: "",
+  });
 
   return (
     <>
@@ -20,12 +25,12 @@ const Welcome = () => {
       </div>
 
       <div className="p-4 max-w-2xl mx-auto">
-        <MilestoneList />
+        <MilestoneList form={form} />
       </div>
 
       {isModal && (
         <Modal onClose={() => setIsModal(false)}>
-          <MilestoneForm name={"Save Milstone"} />
+          <MilestoneForm name={"Save Milstone"} form={form} setForm={setForm} />
         </Modal>
       )}
     </>
