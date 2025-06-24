@@ -50,7 +50,9 @@ export const getMilestones = async () => {
     method: "GET",
     headers: getHeaders(),
   });
-  return res.json();
+
+  const data = await res.json();
+  return data;
 };
 
 export const addMilestone = async (title, date, note) => {
@@ -79,7 +81,9 @@ export const deleteMilestone = async (id) => {
     method: "DELETE",
     headers: getHeaders(),
   });
-  return res.json();
+  const data = await res.json();
+  console.log(data);
+  return data;
 };
 
 // --- Tips ---

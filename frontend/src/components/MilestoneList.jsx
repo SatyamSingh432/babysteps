@@ -3,10 +3,9 @@ import MilestoneForm from "./MilstoneForm";
 import Modal from "./Modal";
 import TipForm from "./TipForm";
 import { useEffect } from "react";
-import { getMilestones, getTips } from "../utils/apis";
+import { deleteMilestone, getMilestones, getTips } from "../utils/apis";
 
 export default function MilestoneList({ form }) {
-  console.log(form);
   const [editModal, setEditModal] = useState(false);
   const [tipModal, setTipModal] = useState(false);
   const [visibleTipsIndex, setVisibleTipsIndex] = useState(null);
@@ -34,6 +33,13 @@ export default function MilestoneList({ form }) {
       setVisibleTipsIndex(index);
     }
   };
+
+  const deleteMilestoneHandler = async (id) => {
+    await deleteMilestone(id);
+    const updated = await getMilestones();
+    setMilestones(updated);
+  };
+
   return (
     <div className="space-y-4">
       {milestones.map((m, index) => (
@@ -57,7 +63,10 @@ export default function MilestoneList({ form }) {
                 </button>
               </div>
               <div className="space-x-2">
-                <button className="text-white cursor-pointer py-1 px-2 rounded  bg-red-400">
+                <button
+                  className="text-white cursor-pointer py-1 px-2 rounded  bg-red-400"
+                  onClick={() => deleteMilestoneHandler(m._id)}
+                >
                   Delete
                 </button>
               </div>
@@ -105,6 +114,7 @@ export default function MilestoneList({ form }) {
             name={"Save Changes"}
             setEditFormData={setEditFormData}
             editFormData={editFormData}
+            setIsModal1={setEditModal}
           />
         </Modal>
       )}

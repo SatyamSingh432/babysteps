@@ -18,6 +18,8 @@ export const createMilestone = async (req, res) => {
 export const getUserMilestones = async (req, res) => {
   try {
     const milestones = await Milestones.find({ userId: req.user.id });
+    console.log(milestones);
+
     res.json(milestones);
   } catch {
     res.status(500).json({ error: "Error fetching milestones." });

@@ -25,12 +25,17 @@ const Welcome = () => {
       </div>
 
       <div className="p-4 max-w-2xl mx-auto">
-        <MilestoneList form={form} />
+        <MilestoneList form={form} setIsModal1={setIsModal} />
       </div>
 
       {isModal && (
         <Modal onClose={() => setIsModal(false)}>
-          <MilestoneForm name={"Save Milstone"} form={form} setForm={setForm} />
+          <MilestoneForm
+            name={"Save Milstone"}
+            form={form}
+            setForm={setForm}
+            setIsModal={setIsModal}
+          />
         </Modal>
       )}
     </>
