@@ -2,53 +2,41 @@ import React, { useState } from "react";
 import MilestoneForm from "./MilstoneForm";
 import Modal from "./Modal";
 import TipForm from "./TipForm";
-const dummyMilestones = [
-  {
-    title: "Project Kickoff",
-    date: "2025-06-01",
-    note: "Initial team meeting and scope discussion.",
-    tips: [
-      "Make sure everyone understands the project goals.",
-      "Assign clear roles and responsibilities.",
-    ],
-  },
-  {
-    title: "Design Finalized",
-    date: "2025-06-05",
-    note: "All UI screens approved by the client.",
-    tips: [
-      "Get written approval from stakeholders.",
-      "Double-check responsiveness and accessibility.",
-    ],
-  },
-  {
-    title: "Backend Setup",
-    date: "2025-06-07",
-    note: "MongoDB and Express configured.",
-    tips: [
-      "Ensure secure DB connection (e.g., with env vars).",
-      "Use RESTful structure for APIs.",
-    ],
-  },
-  {
-    title: "Frontend Layout Complete",
-    date: "2025-06-10",
-    note: "Landing and dashboard pages implemented.",
-    tips: [
-      "Use a consistent design system.",
-      "Ensure mobile responsiveness early.",
-    ],
-  },
-];
+import { useEffect } from "react";
+import { getMilestones, getTips } from "../utils/apis";
 
-export default function MilestoneList() {
+export default function MilestoneList({ form }) {
+  console.log(form);
   const [editModal, setEditModal] = useState(false);
   const [tipModal, setTipModal] = useState(false);
   const [visibleTipsIndex, setVisibleTipsIndex] = useState(null);
+  const [milestones, setMilestones] = useState([]);
+  const [milestoneId, setMilestoneId] = useState("");
+  const [tips, setTips] = useState([]);
+  const [tip, setTip] = useState("");
+  const [editFormData, setEditFormData] = useState({});
+  useEffect(() => {
+    const res = async () => {
+      const data = await getMilestones();
+      setMilestones(data);
+      console.log(data);
+    };
+    res();
+  }, [form]);
 
+  const handleTips = async (milestoneId, index) => {
+    if (visibleTipsIndex === index) {
+      setVisibleTipsIndex(null);
+      setTips([]);
+    } else {
+      const tipData = await getTips(milestoneId);
+      setTips(tipData || []);
+      setVisibleTipsIndex(index);
+    }
+  };
   return (
     <div className="space-y-4">
-      {dummyMilestones.map((m, index) => (
+      {milestones.map((m, index) => (
         <div key={index} className="border p-4 rounded bg-white">
           <div className="flex justify-between">
             <div>
@@ -61,6 +49,7 @@ export default function MilestoneList() {
                 <button
                   className=" text-white cursor-pointer py-1 px-2 rounded  bg-blue-500"
                   onClick={() => {
+                    setEditFormData(m);
                     setEditModal(true);
                   }}
                 >
@@ -75,11 +64,15 @@ export default function MilestoneList() {
             </div>
           </div>
           {visibleTipsIndex === index && (
-            <div>
-              <h2 className="text-blue-500">Tips :</h2>
-              {m.tips.map((ele, index) => {
-                return <p key={index}>{`${index + 1}: ${ele}`}</p>;
-              })}
+            <div className="pt-2">
+              <h2 className="text-blue-500 font-semibold">Tips:</h2>
+              {tips.length > 0 ? (
+                tips.map((ele, idx) => (
+                  <p key={idx}>{`${idx + 1}: ${ele.content}`}</p>
+                ))
+              ) : (
+                <p className="text-gray-600">No tips yet for this milestone.</p>
+              )}
             </div>
           )}
 
@@ -87,11 +80,7 @@ export default function MilestoneList() {
             <div className="space-x-2">
               <button
                 className=" text-white cursor-pointer py-1 px-2 rounded  bg-blue-500"
-                onClick={() => {
-                  setVisibleTipsIndex(
-                    visibleTipsIndex === index ? null : index
-                  );
-                }}
+                onClick={() => handleTips(m._id, index)}
               >
                 {visibleTipsIndex === index ? "Hide Tips" : "View Tips"}
               </button>
@@ -100,6 +89,7 @@ export default function MilestoneList() {
               <button
                 className="text-white cursor-pointer py-1 px-2 rounded bg-blue-500"
                 onClick={() => {
+                  setMilestoneId(m._id);
                   setTipModal(true);
                 }}
               >
@@ -111,12 +101,22 @@ export default function MilestoneList() {
       ))}
       {editModal && (
         <Modal onClose={() => setEditModal(false)}>
-          <MilestoneForm name={"Save Changes"} />
+          <MilestoneForm
+            name={"Save Changes"}
+            setEditFormData={setEditFormData}
+            editFormData={editFormData}
+          />
         </Modal>
       )}
       {tipModal && (
         <Modal onClose={() => setTipModal(false)}>
-          <TipForm name={"Save Tip"} />
+          <TipForm
+            name={"Save Tip"}
+            tip={tip}
+            setTip={setTip}
+            milestoneId={milestoneId}
+            setVisibleTipsIndex={setVisibleTipsIndex}
+          />
         </Modal>
       )}
     </div>
