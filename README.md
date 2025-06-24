@@ -79,4 +79,6 @@ npm run dev
 🖼️ Screenshots
 <img width="1435" alt="Screenshot 2025-06-24 at 3 26 00 PM" src="https://github.com/user-attachments/assets/de522ad9-0f45-48c9-8329-73327cf98a32" />
 🙋‍♂️ Author
+```bash
 Made by Satyam Singh
+```
