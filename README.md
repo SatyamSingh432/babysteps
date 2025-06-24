@@ -28,7 +28,11 @@ To test the app with existing data, use the following credentials:
 | React        | Express.js         |
 | Tailwind CSS | MongoDB + Mongoose |
 |              | REST API           |
+
 ```
+
+---
+
 ## 🔧 Project Structure
 
 
@@ -55,6 +59,8 @@ babysteps/
 │ └── App.jsx
 │ └── package.json
 ```
+---
+
 ## 🔧 Setup Instructions
 
 ### 📦 1. Clone the Repository
@@ -75,9 +81,13 @@ cd backend
 npm install
 npm run dev
 ```
+---
 
 🖼️ Screenshots
 <img width="1435" alt="Screenshot 2025-06-24 at 3 26 00 PM" src="https://github.com/user-attachments/assets/de522ad9-0f45-48c9-8329-73327cf98a32" />
+
+---
+
 🙋‍♂️ Author
 ```bash
 Made by Satyam Singh
