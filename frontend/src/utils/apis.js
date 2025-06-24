@@ -1,4 +1,5 @@
-const API_URL = "http://localhost:8080";
+// const API_URL = "http://localhost:8080";
+const API_URL = "https://babysteps-cgpr.onrender.com";
 
 export const loginUser = async ({ email, password }) => {
   const res = await fetch(`${API_URL}/api/auth/login`, {
@@ -8,7 +9,7 @@ export const loginUser = async ({ email, password }) => {
   });
   const resJson = await res.json();
   localStorage.setItem("token", resJson.token);
-  localStorage.setItem("user", resJson.user);
+  localStorage.setItem("user", JSON.stringify(resJson.user));
   return resJson;
 };
 
@@ -29,7 +30,7 @@ export const registerUser = async ({ username, email, password }) => {
   if (res.ok) {
     const resJson = await res.json();
     localStorage.setItem("token", resJson.token);
-    localStorage.setItem("user", resJson.user);
+    localStorage.setItem("user", JSON.stringify(resJson.user));
 
     return resJson;
   }
