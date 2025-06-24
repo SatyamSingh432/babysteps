@@ -14,6 +14,11 @@
 
 ---
 
+To test the app with existing data, use the following credentials:
+
+📧 Email: satyam@123
+🔑 Password: 1234
+
 ## 🖥️ Tech Stack
 
 | Frontend     | Backend            |
