@@ -7,6 +7,7 @@ export default function MilestoneForm({
   setIsModal,
   setIsModal1,
   setEditFormData,
+  setUpdateData,
   editFormData = {},
 }) {
   const handleChange = (e) => {
@@ -34,6 +35,7 @@ export default function MilestoneForm({
     } else {
       const res = await updateMilestone(editFormData._id, editFormData);
       const data = await res;
+      setUpdateData(data);
       setIsModal1(false);
       console.log(data);
     }

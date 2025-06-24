@@ -7,6 +7,7 @@ import { deleteMilestone, getMilestones, getTips } from "../utils/apis";
 
 export default function MilestoneList({ form }) {
   const [editModal, setEditModal] = useState(false);
+  const [updateData, setUpdateData] = useState({});
   const [tipModal, setTipModal] = useState(false);
   const [visibleTipsIndex, setVisibleTipsIndex] = useState(null);
   const [milestones, setMilestones] = useState([]);
@@ -21,7 +22,7 @@ export default function MilestoneList({ form }) {
       console.log(data);
     };
     res();
-  }, [form]);
+  }, [form, updateData]);
 
   const handleTips = async (milestoneId, index) => {
     if (visibleTipsIndex === index) {
@@ -115,6 +116,7 @@ export default function MilestoneList({ form }) {
             setEditFormData={setEditFormData}
             editFormData={editFormData}
             setIsModal1={setEditModal}
+            setUpdateData={setUpdateData}
           />
         </Modal>
       )}
