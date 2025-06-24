@@ -47,7 +47,7 @@ export default function MilestoneList({ form }) {
           <div className="flex justify-between">
             <div>
               <h3 className="text-lg font-bold">{m.title}</h3>
-              <p className="text-sm">{m.date}</p>
+              <p className="text-sm">{m.date.split("T")[0]}</p>
               {m.note && <p className="text-gray-700 mt-1">{m.note}</p>}
             </div>
             <div className="flex gap-4">
