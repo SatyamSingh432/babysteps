@@ -85,18 +85,22 @@ export const deleteMilestone = async (id) => {
 // --- Tips ---
 
 export const getTips = async (milestoneId) => {
-  const res = await fetch(`${API_URL}/api/milestones/${milestoneId}/tips`, {
+  const res = await fetch(`${API_URL}/api/tips/${milestoneId}`, {
     method: "GET",
     headers: getHeaders(),
   });
-  return res.json();
+  const data = await res.json();
+  console.log(data);
+  return data;
 };
 
-export const addTip = async (milestoneId, text) => {
-  const res = await fetch(`${API_URL}/api/milestones/${milestoneId}/tips`, {
+export const addTip = async (milestoneId, content) => {
+  console.log(milestoneId, content);
+  const res = await fetch(`${API_URL}/api/tips`, {
     method: "POST",
     headers: getHeaders(),
-    body: JSON.stringify({ text }),
+    body: JSON.stringify({ milestoneId, content }),
   });
-  return res.json();
+  const data = await res.json();
+  return data;
 };
