@@ -65,10 +65,13 @@ npm run dev
 for backend
 
 cd backend
+
 npm install
 npm run dev
 
 Screenshots
+<img width="1440" alt="Screenshot 2025-06-24 at 11 29 52 AM" src="https://github.com/user-attachments/assets/470163cc-0d60-49d0-b91d-a619775f16cd" />
+
 
 🙋‍♂️ Author
 Made with by Satyam Singh
