@@ -47,11 +47,11 @@ babysteps/
 ├── frontend/  
 │ ├── public/
 │ └── src/
-│ ├── assets/
-│ ├── components/
-│ ├── context/
-│ ├── pages/
-│ └── utils/
+│     ├── assets/
+│     ├── components/
+│     ├── context/
+│     ├── pages/
+│     └── utils/
 │ └── App.jsx
 │ └── package.json
 ```
