@@ -18,7 +18,7 @@ export const createMilestone = async (req, res) => {
 export const getUserMilestones = async (req, res) => {
   try {
     const milestones = await Milestones.find({ userId: req.user.id });
-    console.log(milestones);
+    // console.log(milestones);
 
     res.json(milestones);
   } catch {

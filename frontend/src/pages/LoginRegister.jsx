@@ -22,7 +22,7 @@ const AuthPage = () => {
   useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem("token");
-      console.log(token);
+      // console.log(token);
       if (token) {
         const res = await verifyToken(JSON.parse(token));
         if (res) {
@@ -73,7 +73,7 @@ const AuthPage = () => {
 
   const registerFormSubmit = async (e) => {
     e.preventDefault();
-    console.log("Register Form:", registerForm);
+    // console.log("Register Form:", registerForm);
     try {
       const res = await registerUser(registerForm);
       if (res) {

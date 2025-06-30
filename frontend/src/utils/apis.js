@@ -59,14 +59,14 @@ export const getMilestones = async () => {
 };
 
 export const addMilestone = async (title, date, note) => {
-  console.log(title, date, note);
+  // console.log(title, date, note);
   const res = await fetch(`${API_URL}/api/milestones`, {
     method: "POST",
     headers: getHeaders(),
     body: JSON.stringify({ title, date, note }),
   });
   const data = await res.json();
-  console.log(data);
+  // console.log(data);
   return data;
 };
 
@@ -85,7 +85,7 @@ export const deleteMilestone = async (id) => {
     headers: getHeaders(),
   });
   const data = await res.json();
-  console.log(data);
+  // console.log(data);
   return data;
 };
 
@@ -97,12 +97,12 @@ export const getTips = async (milestoneId) => {
     headers: getHeaders(),
   });
   const data = await res.json();
-  console.log(data);
+  // console.log(data);
   return data;
 };
 
 export const addTip = async (milestoneId, content) => {
-  console.log(milestoneId, content);
+  // console.log(milestoneId, content);
   const res = await fetch(`${API_URL}/api/tips`, {
     method: "POST",
     headers: getHeaders(),

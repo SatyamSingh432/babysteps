@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const { user, logout } = useUser();
-  console.log(user, logout);
+  // console.log(user, logout);
   const navigate = useNavigate();
 
   const handleLogout = () => {

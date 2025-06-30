@@ -19,7 +19,7 @@ export default function MilestoneList({ form }) {
     const res = async () => {
       const data = await getMilestones();
       setMilestones(data);
-      console.log(data);
+      // console.log(data);
     };
     res();
   }, [form, updateData]);

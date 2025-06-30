@@ -37,7 +37,7 @@ export default function MilestoneForm({
       const data = await res;
       setUpdateData(data);
       setIsModal1(false);
-      console.log(data);
+      // console.log(data);
     }
   };
 
